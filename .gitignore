@@ -7,3 +7,7 @@
 Thumbs.db
 .DS_Store
 desktop.ini
+
+# runtime logs
+.freebuff/preview-*.log*
+.freebuff/project-id
