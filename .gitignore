@@ -1,0 +1,9 @@
+# internal extraction tooling (Python deps, pip cache, render artifacts)
+.freebuff/pydeps/
+.freebuff/pipcache/
+.freebuff/render/
+
+# OS / editor junk
+Thumbs.db
+.DS_Store
+desktop.ini

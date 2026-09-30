@@ -1,0 +1,149 @@
+/* ==========================================================================
+   SECTION 1: LANDING PAGE (FULL-WIDTH HERO)
+   ========================================================================== */
+
+/* Eyesome Script — the PDF's own title font, extracted from the embedded
+   subset (covers exactly the letters of "Merku Karaiyil"). */
+@font-face {
+  font-family: 'Eyesome Script';
+  src: url('../fonts/EyesomeScript.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+#section-landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.landing-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 75% 60% at 50% 40%, rgba(10, 22, 40, 0.35) 0%, rgba(5, 12, 24, 0.65) 100%);
+}
+
+.landing-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+  animation: ambientBreathe 9s ease-in-out infinite alternate;
+}
+
+#particleCanvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: landingEntry 1.5s ease-out both;
+}
+
+.landing-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-primary);
+  opacity: 0.95;
+  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+}
+
+.landing-title {
+  font-family: 'Eyesome Script', 'Yeseva One', cursive;
+  font-size: clamp(3.4rem, 10vw, 7.5rem);
+  font-weight: 400;
+  color: var(--gold-bright);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  text-shadow: 0 0 60px rgba(201, 168, 76, 0.35), 0 3px 6px rgba(0, 0, 0, 0.9);
+  margin-bottom: 1.4rem;
+  animation: titleGlow 4.5s ease-in-out infinite alternate;
+}
+
+.landing-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  letter-spacing: 0.25em;
+  margin-bottom: 3.2rem;
+}
+
+@keyframes ambientBreathe {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+  }
+
+  100% {
+    text-shadow: 0 0 70px rgba(201, 168, 76, 0.55), 0 0 120px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) translateX(var(--dx));
+  }
+}
+
+@keyframes landingEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

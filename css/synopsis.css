@@ -1,0 +1,61 @@
+/* ==========================================================================
+   SECTION 3: SYNOPSIS
+   ========================================================================== */
+#section-synopsis {
+  padding: 6rem 6%;
+  background: rgba(10, 22, 40, 0.45);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+.act-card {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(15, 30, 53, 0.35), rgba(10, 22, 40, 0.45));
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-left: 3px solid var(--gold-primary);
+  padding: 2.2rem 2rem 2.2rem 1.8rem;
+  position: relative;
+  transition: transform 0.35s, box-shadow 0.35s;
+  backdrop-filter: blur(6px);
+}
+
+.act-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dark), transparent);
+}
+
+.act-card:hover {
+  transform: translateY(-5px);
+  box-shadow: -4px 10px 35px rgba(0,0,0,0.5), 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
+.act-header {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-primary);
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.act-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  color: var(--gold-bright);
+  margin-bottom: 0.9rem;
+}
+
+.act-description {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-offwhite);
+  line-height: 1.9;
+  opacity: 0.98;
+}

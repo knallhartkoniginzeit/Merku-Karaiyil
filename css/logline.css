@@ -1,0 +1,88 @@
+/* ==========================================================================
+   SECTION 2: LOG LINE
+   ========================================================================== */
+#section-logline {
+  padding: 8rem 6% 6rem;
+  background: linear-gradient(180deg, rgba(5, 12, 24, 0.4) 0%, rgba(10, 22, 40, 0.5) 100%);
+  backdrop-filter: blur(3px);
+  position: relative;
+}
+
+#particleCanvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+.logline-column {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-offwhite);
+  line-height: 1.95;
+  opacity: 1.;
+  border-left: 1px solid rgba(201, 168, 76, 0.25);
+  border-right: 1px solid rgba(201, 168, 76, 0.25);
+  padding-left: 1.6rem;
+}
+
+@keyframes ambientBreathe {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+  }
+
+  100% {
+    text-shadow: 0 0 70px rgba(201, 168, 76, 0.55), 0 0 120px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) translateX(var(--dx));
+  }
+}
+
+@keyframes landingEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

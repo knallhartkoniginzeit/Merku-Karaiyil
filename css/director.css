@@ -1,0 +1,138 @@
+/* ==========================================================================
+   SECTION 9: DIRECTOR — exact replica of PDF page 42
+   Portrait left, "Director / Dilip" label right, bio beneath the name.
+   Plus SECTION 10: CONTACT — PDF page 43 (giant Gmail / Contact number).
+   ========================================================================== */
+#section-director {
+  padding: 6rem 5% 3rem;
+  background: rgba(10, 22, 40, 0.45);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+.director-page {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.director-grid {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* photo exactly like the PDF: rectangular frame left of the text */
+.director-photo-frame {
+  flex: 0 0 380px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+}
+
+.director-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.92);
+}
+
+.director-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* "Director" eyebrow + big "Dilip" name, as in the PDF */
+.director-label {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  text-shadow: 0 0 18px rgba(201, 168, 76, 0.35);
+  margin-bottom: 0.4rem;
+}
+
+.director-name {
+  font-family: 'Yeseva One', cursive;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--gold-bright);
+  margin-bottom: 1.6rem;
+  line-height: 1.1;
+}
+
+.director-bio {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text-offwhite);
+  opacity: 0.92;
+  text-align: left;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 10: CONTACT — PDF page 43 (giant centered lines)
+   ========================================================================== */
+#section-contact {
+  padding: 9rem 5%;
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.45), rgba(5, 12, 24, 0.6));
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.contact-page-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-giant {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.contact-line {
+  font-family: 'Yeseva One', cursive;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  color: var(--text-white);
+  line-height: 1.3;
+}
+
+.contact-line a {
+  color: var(--gold-bright);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(201, 168, 76, 0.4);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.contact-line a:hover {
+  color: var(--gold-primary);
+  border-bottom-color: var(--gold-primary);
+}
+
+/* --- responsive --- */
+@media (max-width: 1100px) {
+  .director-grid {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  .director-photo-frame {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 420px;
+  }
+  .director-text {
+    width: 100%;
+  }
+  .director-bio {
+    text-align: center;
+  }
+}

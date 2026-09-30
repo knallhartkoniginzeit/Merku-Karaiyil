@@ -1,0 +1,442 @@
+/* ==========================================================================
+   SECTION 4: MOOD BOARD — exact reproduction of PDF slides 14-25
+   Each slide = [ MOOD BOARD side-heading (left) | content (right) ]
+   - Film Mood / Narrative Arc / Tone & Light: polaroid image grids
+   - Narrative Arc ACT slides (PDF pages 19-21): story steps with their own
+     contextual photos + the solid white STORY LINE with per-act tick marks
+     and plot-point labels, exactly as in the PDF.
+   ========================================================================== */
+#section-moodboard {
+  padding: 5rem 4% 4rem;
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.4) 0%, rgba(5, 12, 24, 0.5) 100%);
+  position: relative;
+  overflow: visible;
+}
+
+.polaroid-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: stretch;
+  padding-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   ONE PDF SLIDE: side heading on the left, content on the right
+   -------------------------------------------------------------------------- */
+.mood-slide {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.mood-side-heading {
+  flex: 0 0 190px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  text-align: center;
+  padding-top: 0.4rem;
+  border-right: 1px solid rgba(201, 168, 76, 0.3);
+  padding-right: 1.2rem;
+  min-height: 220px;
+}
+
+.mood-side-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: var(--gold-bright);
+  margin-top: 0.6rem;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   POLAROID IMAGE GRID — 4 photos per row (Film Mood / Narrative / Tone pages)
+   -------------------------------------------------------------------------- */
+.mood-photo-grid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   LANDSCAPE POLAROID CARD — minimal white frame so the photo dominates
+   -------------------------------------------------------------------------- */
+.polaroid-card.mood-card {
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  background: #F2EDD8;
+  padding: 4px 4px 14px;
+  border-radius: 12px;
+  box-shadow: 3px 5px 22px rgba(0,0,0,0.75), 0 0 0 1px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+/* Hover: enlarged (1.6x) with a SOFT glow — reduced from 2.2x/glow-large */
+.polaroid-card.mood-card:hover {
+  transform: scale(1.6) rotate(0deg);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.9),
+              0 0 0 2px var(--gold-primary),
+              var(--glow-small);
+  z-index: 300;
+}
+
+/* Landscape polaroid frame: 16:9, softly rounded corners */
+.mood-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.mood-photo-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Subtle zoom of the photo itself on card hover */
+.polaroid-card.mood-card:hover .mood-photo-frame img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   DAN HARMON STORY CIRCLE (PDF pages 19-21) — acts side-by-side
+   The three ACT panels sit in a horizontal scroll-snap track: ACT 1 first,
+   ACT 2 and ACT 3 continue to the RIGHT like slides in a deck. Scroll/
+   swipe horizontally (or drag the dots) to move between acts.
+   ========================================================================== */
+.story-track {
+  display: flex;
+  gap: 0; /* panels butt together so the story line reads as ONE line across acts */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.5rem 0 1rem;
+  align-items: stretch;
+}
+
+.story-track::-webkit-scrollbar {
+  display: none;
+}
+
+.story-circle-slide {
+  scroll-snap-align: start;
+  flex: 0 0 100%;
+  width: 100%;
+  align-items: stretch;
+  min-height: calc(100vh - 9rem);
+  padding: 2.5rem 0 2rem;
+}
+
+/* act 2 & 3 have no side heading: give the stage the heading's width back,
+   and pull it flush to the panel edge so the line continues seamlessly */
+.story-circle-slide:not(.act-1) .act-stage {
+  margin-left: -1rem;
+  padding-left: 0.5rem;
+}
+
+/* ACT 1: line bleeds off the RIGHT edge of its panel */
+.act-1 .story-line { right: -1rem; }
+
+/* ACT 3: line bleeds from the LEFT edge of its panel */
+.act-3 .story-line { left: -1rem; width: calc(68% + 1rem); }
+.act-3 .story-line-row .tick.tick-small { left: calc(68% + 1rem); }
+.act-3 .story-line-row .plot-label.align-left { left: 0.5rem; }
+
+/* Act dots below the track (mirrors the characters carousel) */
+.story-track-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.story-track-nav .nav-arrow-button {
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+}
+
+.story-track-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.story-track-dots .dot-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.story-track-dots .dot-indicator.active {
+  background: var(--gold-primary);
+  transform: scale(1.5);
+  box-shadow: var(--glow-small);
+}
+
+.story-circle-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  margin-top: 0.8rem;
+  line-height: 1.4;
+}
+
+/* The stage is three bands like the PDF page: top steps | story line | bottom steps */
+.act-stage {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  column-gap: 3.5rem;
+  row-gap: 1.5rem;
+}
+
+.act-1 .act-stage { grid-template-columns: 0.9fr 1.45fr 1.3fr; }
+.act-2 .act-stage { grid-template-columns: 1.05fr 0.95fr 1.05fr; }
+.act-3 .act-stage { grid-template-columns: 1fr 1fr 0.85fr; }
+
+/* --- per-act cell placement (mirrors the PDF page composition) --- */
+.act-1 .step-1 { grid-column: 1; grid-row: 1; align-self: center; }
+.act-1 .story-act-header { grid-column: 2; grid-row: 1; align-self: center; }
+.act-1 .step-3 { grid-column: 3; grid-row: 1; align-self: center; }
+.act-1 .step-2 { grid-column: 2; grid-row: 3; align-self: center; justify-self: center; width: 82%; }
+
+.act-2 .step-4 { grid-column: 1; grid-row: 1; align-self: center; }
+.act-2 .story-act-header { grid-column: 2; grid-row: 1; align-self: start; }
+.act-2 .step-6 { grid-column: 3; grid-row: 1; align-self: center; }
+.act-2 .step-5 { grid-column: 2; grid-row: 3; align-self: center; justify-self: center; width: 86%; }
+
+.act-1 .story-line-row,
+.act-2 .story-line-row { grid-column: 1 / -1; grid-row: 2; }
+
+.act-3 .step-8 { grid-column: 3; grid-row: 1 / 4; align-self: start; justify-self: end; width: 76%; }
+.act-3 .story-line-row { grid-column: 1 / 3; grid-row: 2; }
+.act-3 .step-7 { grid-column: 1 / 3; grid-row: 3; align-self: center; justify-self: start; width: 90%; }
+
+/* --- story step block: heading + body + its own photos --- */
+.story-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.story-step h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.story-step p {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-offwhite);
+}
+
+/* --- contextual photos: plain rectangles, no polaroid frame (as the PDF) --- */
+.step-photos {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1.6rem;
+}
+
+.step-photos.stack {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Pairs that physically overlap in the PDF (act 2 step 6, act 3 step 7,
+   and the stacked trio of act 3 step 8) */
+.step-photos.overlap .act-photo + .act-photo {
+  margin-left: -1.4rem;
+  z-index: 2;
+}
+
+.step-photos.stack .act-photo + .act-photo {
+  margin-top: -1.2rem;
+  z-index: 2;
+}
+
+/* the trio's third photo sits slightly apart, as in the PDF */
+.step-photos.stack .act-photo:nth-child(3) {
+  margin-top: 1.4rem;
+  z-index: 1;
+}
+
+.act-photo {
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #101820;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+.act-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.act-photo:hover {
+  transform: scale(1.35);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.85),
+              0 0 0 2px var(--gold-primary),
+              var(--glow-small);
+  z-index: 300;
+}
+
+/* --- ACT header (centred column) --- */
+.story-act-header {
+  text-align: center;
+  min-width: 0;
+}
+
+.story-act-header h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.story-act-header span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-offwhite);
+  margin-top: 0.5rem;
+}
+
+/* --- THE STORY LINE: solid white rule + tick marks + plot-point label --- */
+.story-line-row {
+  position: relative;
+  height: 12rem;
+  pointer-events: none;
+}
+
+.story-line {
+  position: absolute;
+  top: 50%;
+  margin-top: -2px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+}
+
+.story-line-row .tick {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+}
+
+.tick-small { height: 3.4rem; }
+.tick-tall  { height: 9rem; }
+
+.plot-label {
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+  transform: translateX(-50%);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+}
+
+.plot-label.below { top: calc(50% + 4.8rem); }
+.plot-label.above { bottom: calc(50% + 5.2rem); }
+.plot-label.align-left { transform: none; }
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .mood-slide {
+    flex-direction: column;
+  }
+  .mood-side-heading {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    padding: 0 0 0.6rem;
+    min-height: 0;
+    width: 100%;
+  }
+  .mood-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .story-circle-slide {
+    min-height: 0;
+    padding: 1.5rem 0;
+  }
+  .act-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .story-line-row {
+    height: 12rem;
+  }
+  .plot-label.below { top: calc(50% + 4.6rem); }
+  .plot-label.above { bottom: calc(50% + 5.6rem); }
+  .tick-tall { height: 9.5rem; }
+}
+
+@media (max-width: 640px) {
+  .mood-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .step-photos {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+  .act-photo {
+    min-width: 46%;
+  }
+}

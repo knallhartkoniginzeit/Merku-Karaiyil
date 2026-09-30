@@ -1,0 +1,172 @@
+/* ==========================================================================
+   SECTION 7: LOCATIONS — exact replica of PDF pages 30-38
+   One full-page slide per location: "LOCATION" side banner, title,
+   verbatim description, masonry photo wall of the exact PDF references.
+   ========================================================================== */
+#section-locations {
+  padding: 4rem 0 3rem;
+  background: rgba(10, 22, 40, 0.45);
+  backdrop-filter: blur(4px);
+  position: relative;
+  overflow: hidden;
+}
+
+.location-cards-grid {
+  display: flex;
+  gap: 0;
+  padding: 1.2rem 0 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+
+.location-cards-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.location-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  padding: 0 6%;
+  box-sizing: border-box;
+}
+
+/* top location label (side banner removed per request) */
+.location-banner {
+  display: none;
+}
+
+.location-body {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 0.6rem;
+}
+
+.location-desc {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-offwhite);
+  opacity: 0.9;
+  max-width: 760px;
+  margin-bottom: 1.6rem;
+}
+
+/* --- photo wall: fixed frame height; JS balances photos into columns
+       and scales them so the whole set fits inside the frame, every
+       image keeping its natural aspect ratio (no cropping) --- */
+.location-wall {
+  flex: none;
+  height: clamp(320px, calc(100vh - 430px), 620px);
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.location-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.location-photo {
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  background: #0A1420;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.location-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.location-photo:hover {
+  transform: scale(1.25);
+  border-color: var(--gold-primary);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), var(--glow-small);
+  z-index: 5;
+  position: relative;
+}
+
+/* all tiles at their natural aspect ratio — no cropping, no spans */
+
+/* --- carousel controls --- */
+.location-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.location-controls .nav-arrow-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--gold-dark);
+  background: rgba(10, 22, 40, 0.6);
+  color: var(--gold-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.location-controls .nav-arrow-button:hover {
+  background: rgba(201, 168, 76, 0.15);
+  box-shadow: var(--glow-small);
+}
+
+.location-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.location-dots .dot-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.location-dots .dot-indicator.active {
+  background: var(--gold-primary);
+  transform: scale(1.5);
+  box-shadow: var(--glow-small);
+}
+
+/* --- responsive --- */
+@media (max-width: 1100px) {
+  .location-wall {
+    height: clamp(260px, calc(100vh - 480px), 520px);
+  }
+}

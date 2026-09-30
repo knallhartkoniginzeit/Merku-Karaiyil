@@ -1,0 +1,477 @@
+/* ==========================================================================
+   GLOBAL DESIGN SYSTEM & TOKENS
+   ========================================================================== */
+:root {
+  --bg-black: #050C18;
+  --bg-prussian: #0A1628;
+  --bg-prussian-mid: #0F1E35;
+  --bg-prussian-light: #152640;
+  
+  --gold-primary: #C9A84C;
+  --gold-bright: #F0D080;
+  --gold-dark: #8B6914;
+  --gold-muted: #5C4420;
+  
+  --text-white: #F5F0E8;
+  --text-offwhite: #D4CDB8;
+  
+  --glow-small: 0 0 12px rgba(201, 168, 76, 0.35);
+  --glow-medium: 0 0 24px rgba(201, 168, 76, 0.4), 0 0 48px rgba(201, 168, 76, 0.15);
+  --glow-large: 0 0 40px rgba(201, 168, 76, 0.6), 0 0 80px rgba(201, 168, 76, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-black) url('../images/bg-landscape.jpg') center / cover no-repeat fixed;
+  color: var(--text-white);
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Paragraph / body text font — Akzidenz-Grotesk style grotesque sans.
+   'Akzidenz-Grotesk' loads if installed locally (Berthold's commercial font);
+   'Archivo' is the free Google Fonts equivalent used otherwise. */
+.act-description,
+.logline-column,
+.location-card-desc,
+.story-step p {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.section-number {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.45em;
+  color: var(--gold-dark);
+  opacity: 0.6;
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  z-index: 5;
+}
+
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--gold-primary);
+  letter-spacing: 0.45em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.section-rule {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  margin: 0 auto 2rem;
+}
+
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-dark) 20%, var(--gold-primary) 50%, var(--gold-dark) 80%, transparent 100%);
+  position: relative;
+  margin: 2rem 0;
+}
+
+.gold-divider::after {
+  content: '◆';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold-primary);
+  font-size: 0.55rem;
+  padding: 0 0.6rem;
+  background: inherit;
+}
+
+/* One Line box */
+.oneline-border-box {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  background: rgba(242, 237, 216, 0.06);
+  padding: 1.75rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.oneline-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: #f0e4c4;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* Scroll Fade In Animation Classes */
+.fade-in-observer {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+.fade-in-observer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.delay-2 {
+  transition-delay: 0.25s;
+}
+
+.delay-3 {
+  transition-delay: 0.4s;
+}
+
+.delay-4 {
+  transition-delay: 0.55s;
+}
+
+/* ==========================================================================
+   STICKY HEADER
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(5, 12, 24, 0.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.22);
+  transition: transform 0.3s ease;
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logo-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--gold-primary);
+}
+
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.logo-fail {
+  opacity: 0.4;
+  font-size: 0.55rem;
+}
+
+.logo-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.65rem;
+  color: var(--text-offwhite);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 0.35rem;
+}
+
+.header-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: var(--text-offwhite);
+  font-family: 'Cinzel', serif;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+  white-space: nowrap;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.header-btn:hover,
+.header-btn:focus-visible {
+  outline: none;
+  color: var(--gold-bright);
+  background: rgba(201, 168, 76, 0.07);
+}
+
+.header-btn.active {
+  color: var(--gold-bright);
+  border-color: var(--gold-primary);
+  background: rgba(201, 168, 76, 0.12);
+}
+
+/* Container offset so fixed header doesn't cover section headings */
+#section-landing,
+#section-logline,
+#section-synopsis,
+#section-moodboard,
+#section-colorpalette,
+#section-characters,
+#section-locations,
+#section-soundtrack,
+#section-director,
+#section-contact {
+  scroll-margin-top: 56px;
+}
+
+/* ---- Credits Section ---- */
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.credit-block {
+  background: rgba(15, 25, 45, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 4px;
+  padding: 1.8rem 1.8rem 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.credit-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  color: var(--gold-primary);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.credit-name {
+  font-family: 'Yeseva One', cursive;
+  font-size: 1.4rem;
+  color: var(--gold-bright);
+  margin: 0.3rem 0;
+}
+
+.credit-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-offwhite);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.credit-cast-list,
+.credit-crew-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.credit-cast-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.credit-cast-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--text-white);
+  font-weight: 500;
+}
+
+.credit-cast-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--gold-muted);
+  white-space: nowrap;
+}
+
+.credit-crew-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  font-size: 0.82rem;
+}
+
+.credit-crew-role {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  color: var(--gold-dark);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.credit-crew-name {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--text-offwhite);
+  opacity: 0.85;
+  text-align: right;
+}
+
+/* ---- Contact Section ---- */
+.contact-section-inner {
+  text-align: center;
+}
+
+.contact-detail-block {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(15, 25, 45, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 6px;
+  padding: 1.2rem 2rem;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-detail-item:hover {
+  border-color: var(--gold-primary);
+  box-shadow: var(--glow-small);
+}
+
+.contact-detail-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.contact-detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact-detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  color: var(--gold-dark);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.contact-detail-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--text-white);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(201, 168, 76, 0.3);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.contact-detail-value:hover {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-primary);
+}
+
+/* ---- Legal Section ---- */
+.legal-center-block {
+  text-align: center;
+  padding: 0 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.legal-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.3em;
+  margin-top: -0.5rem;
+  margin-bottom: 0;
+}
+
+.legal-copyright {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  color: var(--gold-primary);
+  letter-spacing: 0.3em;
+  margin: 1.5rem 0 1rem;
+}
+
+.legal-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  color: var(--text-offwhite);
+  opacity: 0.5;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Footer */
+.site-footer {
+  background: rgba(5, 12, 24, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.site-footer p {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: rgba(201, 168, 76, 0.5);
+}

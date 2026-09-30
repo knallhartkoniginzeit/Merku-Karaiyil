@@ -1,0 +1,189 @@
+/* ==========================================================================
+   SECTION 5: COLOR PALETTE — PDF pages 26-29
+   Four palettes (Boys / Chandru first half / Second half / Climax), each
+   with verbatim PDF text and the exact swatch strip from the deck. The
+   wheel to the left is built purely from those swatches: one ring per
+   palette, one segment per swatch.
+   ========================================================================== */
+#section-colorpalette {
+  padding: 4rem 4% 3rem;
+  background: rgba(5, 12, 24, 0.45);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+.scene-image-row {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 1360px;
+  margin: 0 auto 2rem;
+  height: 130px;
+  overflow: hidden;
+}
+
+.scene-image-cell {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  cursor: pointer;
+  transition: flex 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease, opacity 0.4s ease;
+}
+
+.scene-image-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+/* stills of the hovered colour enlarge, the rest dim */
+.scene-image-cell.highlighted {
+  flex: 2.4;
+  box-shadow: 0 0 0 2px var(--gold-primary), var(--glow-large);
+  border-color: var(--gold-primary);
+}
+
+.scene-image-cell.highlighted img {
+  transform: scale(1.08);
+}
+
+.scene-image-cell.dimmed {
+  opacity: 0.18;
+  flex: 0.55;
+}
+
+.color-wheel-wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.wheel-svg-container {
+  flex-shrink: 0;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-left: -2rem; /* wheel sits a little to the left */
+}
+
+#colorWheelSvg {
+  width: 400px;
+  height: 400px;
+  cursor: pointer;
+}
+
+.wheel-center-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(10, 22, 40, 0.92);
+  border-radius: 50%;
+  border: 2px solid var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-hub-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-bright), var(--gold-primary));
+  box-shadow: var(--glow-small);
+}
+
+/* --- palette cards: wider text column so the whole section fits one frame --- */
+.color-code-list {
+  flex: 1;
+  min-width: 0;
+  max-width: 880px;
+}
+
+.palette-card {
+  border: 1px solid transparent;
+  border-left: 2px solid rgba(201, 168, 76, 0.25);
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 2px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.palette-card:hover,
+.palette-card.active {
+  border-color: rgba(201, 168, 76, 0.3);
+  border-left-color: var(--gold-primary);
+  background: rgba(201, 168, 76, 0.07);
+}
+
+.palette-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.palette-card-title .palette-word {
+  color: #FFD100;
+}
+
+.palette-card-desc {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-offwhite);
+  opacity: 0.88;
+  margin-bottom: 0.6rem;
+  columns: 2;
+  column-gap: 1.6rem; /* long descriptions flow in two columns — saves vertical space */
+}
+
+.palette-strip {
+  display: flex;
+  height: 18px;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  overflow: hidden;
+}
+
+.palette-swatch {
+  flex: 1;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.palette-swatch:hover,
+.palette-swatch.active {
+  transform: scaleY(1.35);
+  box-shadow: 0 0 0 1px var(--gold-bright), var(--glow-small);
+  position: relative;
+  z-index: 2;
+}
+
+/* --- responsive: stack on narrow devices, wheel fits any screen --- */
+@media (max-width: 1100px) {
+  .color-wheel-wrapper {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .wheel-svg-container,
+  #colorWheelSvg {
+    width: 280px;
+    height: 280px;
+    margin-left: 0;
+  }
+  .wheel-center-hub {
+    width: 46px;
+    height: 46px;
+  }
+  .palette-card-desc {
+    columns: 1;
+  }
+}

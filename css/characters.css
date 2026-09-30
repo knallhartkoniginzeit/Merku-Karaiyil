@@ -1,0 +1,348 @@
+/* ==========================================================================
+   SECTION 6: CHARACTERS — PDF pages 8-13
+   One character card per slide (page-by-page carousel). Chandru: static
+   photo + hover cast panel (larger portraits, no title) to the right.
+   SUPPORTING CHARACTERS band below, same card language as the PDF pages.
+   ========================================================================== */
+#section-characters {
+  padding: 4rem 0 3rem;
+  background: linear-gradient(180deg, rgba(5, 12, 24, 0.4) 0%, rgba(10, 22, 40, 0.5) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.character-track {
+  display: flex;
+  gap: 0;
+  padding: 1.2rem 0 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+
+.character-track::-webkit-scrollbar {
+  display: none;
+}
+
+.character-card {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  /* extra horizontal padding keeps all text well inside the visual box
+     (the ::after box edge sits at 6%, so text starts ~2.2rem inside it) */
+  padding: 1.5rem calc(6% + 2.2rem) 1.3rem;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* the visual card box, centred inside the full-width slide */
+.character-card::after {
+  content: '';
+  position: absolute;
+  inset: 0.8rem 6% 0.8rem;
+  background: linear-gradient(135deg, rgba(15, 30, 53, 0.8), rgba(10, 22, 40, 0.9));
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  backdrop-filter: blur(6px);
+  z-index: 0;
+}
+
+.character-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.character-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary), var(--gold-dark));
+}
+
+/* --- photo block: bigger than before; swaps only when a second photo
+       exists (JS adds .can-swap) --- */
+.character-photo-swap {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--gold-dark);
+  margin: 0 auto 1.1rem;
+  cursor: default;
+}
+
+.character-photo-swap.can-swap {
+  cursor: pointer;
+}
+
+.character-photo-swap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.character-photo-swap .photo-hover {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.character-photo-swap:hover .photo-base {
+  opacity: 0;
+}
+
+.character-photo-swap:hover .photo-hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.character-photo-swap:hover {
+  border-color: var(--gold-primary);
+  box-shadow: var(--glow-small);
+}
+
+/* --- Chandru: larger photo, swaps to portrait on hover --- */
+.chandru-photo {
+  width: 250px;
+}
+
+.character-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.character-desc {
+  font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--text-offwhite);
+  opacity: 0.92;
+  flex: 1;
+}
+
+.character-actor {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold-primary);
+  letter-spacing: 0.04em;
+}
+
+.character-actor span {
+  font-size: 0.9rem;
+  color: var(--text-offwhite);
+  opacity: 0.6;
+  margin-right: 0.3rem;
+}
+
+/* --- Chandru feature panel (PDF page 9): photo left, bio right,
+     cast row BELOW the bio --- */
+.chandru-feature {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.chandru-feature .character-photo-swap {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.chandru-feature .chandru-bio {
+  flex: 1 1 0;
+  min-width: 300px;
+}
+
+/* cast strip spans the full card width, under photo + bio */
+.chandru-feature .chandru-cast-panel {
+  flex-basis: 100%;
+}
+
+.chandru-bio {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.chandru-feature .character-heading,
+.chandru-feature .character-actor {
+  text-align: left;
+}
+
+/* --- CAST PANEL: the five confirmed actors BELOW Chandru's bio,
+     always visible (no hover required) --- */
+.chandru-cast-panel {
+  position: static;
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 1.2rem 1.2rem 1.3rem;
+  background: rgba(5, 12, 24, 0.45);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 4px;
+  display: flex;
+  gap: 1rem;
+}
+
+.cast-panel-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.cast-panel-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 1px solid var(--gold-dark);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.cast-panel-card img:hover {
+  transform: scale(1.05);
+  border-color: var(--gold-primary);
+  box-shadow: var(--glow-small);
+}
+
+.cast-panel-card span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  color: var(--text-offwhite);
+  opacity: 0.85;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* --- SUPPORTING CHARACTERS band divider --- */
+.support-heading {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 2rem 6% 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-primary);
+  white-space: nowrap;
+}
+
+.support-rule {
+  display: inline-block;
+  width: 70px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+/* --- carousel controls --- */
+.character-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 6%;
+  margin-top: 0.5rem;
+}
+
+.nav-arrow-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--gold-dark);
+  background: rgba(10, 22, 40, 0.6);
+  color: var(--gold-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.nav-arrow-button:hover {
+  background: rgba(201, 168, 76, 0.15);
+  box-shadow: var(--glow-small);
+}
+
+.character-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.dot-indicator.active {
+  background: var(--gold-primary);
+  transform: scale(1.5);
+  box-shadow: var(--glow-small);
+}
+
+/* --- responsive --- */
+@media (max-width: 1100px) {
+  .character-card {
+    padding-left: calc(6% + 1rem);
+    padding-right: calc(6% + 1rem);
+  }
+  .chandru-feature {
+    flex-direction: column;
+  }
+  .chandru-photo {
+    width: 180px;
+  }
+  .chandru-feature .character-heading,
+  .chandru-feature .character-actor {
+    text-align: center;
+  }
+  /* the floating panel becomes an in-flow block under the card on small screens */
+  .chandru-cast-panel {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 1rem auto 0;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cast-panel-card {
+    flex: 0 0 28%;
+  }
+  .support-heading {
+    padding-left: 0;
+  }
+}
