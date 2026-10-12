@@ -100,7 +100,7 @@
 
 .contact-line {
   font-family: 'Yeseva One', cursive;
-  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
   color: var(--text-white);
   line-height: 1.3;
 }
