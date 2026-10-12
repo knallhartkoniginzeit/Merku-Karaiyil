@@ -12,7 +12,7 @@
   max-width: 1080px;
   margin: 0 auto;
   background: linear-gradient(135deg, rgba(15, 30, 53, 0.35), rgba(10, 22, 40, 0.45));
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(226, 193, 95, 0.2);
   border-left: 3px solid var(--gold-primary);
   padding: 2.2rem 2rem 2.2rem 1.8rem;
   position: relative;
@@ -32,7 +32,7 @@
 
 .act-card:hover {
   transform: translateY(-5px);
-  box-shadow: -4px 10px 35px rgba(0,0,0,0.5), 0 0 20px rgba(201, 168, 76, 0.15);
+  box-shadow: -4px 10px 35px rgba(0,0,0,0.5), 0 0 20px rgba(226, 193, 95, 0.15);
 }
 
 .act-header {

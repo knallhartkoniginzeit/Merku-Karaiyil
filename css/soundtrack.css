@@ -28,10 +28,22 @@
   margin: 0 auto;
 }
 
+/* "SONG 1" label above each card, as in the PDF soundtrack pages */
+.song-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: -0.2rem;
+}
+
 /* --- one song card, styled like the PDF's Spotify embeds --- */
 .song-card {
   background: linear-gradient(160deg, #2E1B14 0%, #241310 60%, #1C0F0B 100%);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(226, 193, 95, 0.25);
   border-radius: 14px;
   padding: 1.1rem 1.2rem 1.2rem;
   display: flex;
@@ -53,7 +65,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(226, 193, 95, 0.2);
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
 }
 
@@ -167,7 +179,7 @@
 .song-seek {
   flex: 1;
   height: 4px;
-  background: rgba(201, 168, 76, 0.15);
+  background: rgba(226, 193, 95, 0.15);
   border-radius: 2px;
   overflow: hidden;
   cursor: pointer;

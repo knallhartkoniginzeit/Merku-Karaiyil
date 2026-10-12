@@ -4,7 +4,7 @@
    verbatim description, masonry photo wall of the exact PDF references.
    ========================================================================== */
 #section-locations {
-  padding: 4rem 0 3rem;
+  padding: 2.6rem 0 2rem;
   background: rgba(10, 22, 40, 0.45);
   backdrop-filter: blur(4px);
   position: relative;
@@ -14,7 +14,7 @@
 .location-cards-grid {
   display: flex;
   gap: 0;
-  padding: 1.2rem 0 2rem;
+  padding: 0.4rem 0 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -54,7 +54,11 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold-bright);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.35rem;
+  /* text always paints ABOVE a zoomed photo: the hover enlargement of the
+     top-row images passes underneath the title */
+  position: relative;
+  z-index: 400;
 }
 
 .location-desc {
@@ -64,7 +68,11 @@
   color: var(--text-offwhite);
   opacity: 0.9;
   max-width: 760px;
+  /* extra room below the text so the top-row photos have space to
+     enlarge into on hover without touching the description */
   margin-bottom: 1.6rem;
+  position: relative;
+  z-index: 400;
 }
 
 /* --- photo wall: fixed frame height; JS balances photos into columns
@@ -72,29 +80,42 @@
        image keeping its natural aspect ratio (no cropping) --- */
 .location-wall {
   flex: none;
-  height: clamp(320px, calc(100vh - 430px), 620px);
+  height: clamp(280px, calc(100vh - 400px), 560px);
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
   align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
+  /* equal space between every column AND at both ends — photos sit in an
+     evenly breathing grid instead of bunching in the middle */
+  justify-content: space-evenly;
+  /* room for the top-row photos to zoom (scale 1.6) below the text */
+  padding-top: 0.5rem;
+  /* visible, not hidden: the mood-board-style zoom (scale 1.6) must be
+     able to escape the wall bounds on hover */
+  overflow: visible;
 }
 
 .location-col {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
   min-width: 0;
   flex: 0 0 auto;
 }
 
 .location-photo {
   overflow: hidden;
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(226, 193, 95, 0.25);
   background: #0A1420;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+  /* positioned so the hover z-index takes effect: the zoomed photo must
+     layer above its siblings but BELOW the title/description text */
+  position: relative;
+  z-index: 1;
+  /* zoom EXACTLY like the mood board polaroid cards */
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease;
+  will-change: transform;
 }
 
 .location-photo img {
@@ -104,11 +125,11 @@
 }
 
 .location-photo:hover {
-  transform: scale(1.25);
-  border-color: var(--gold-primary);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), var(--glow-small);
-  z-index: 5;
-  position: relative;
+  transform: scale(1.6);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9),
+              0 0 0 2px var(--gold-primary),
+              var(--glow-small);
+  z-index: 300; /* under the text (400) — top-row zooms stay behind it */
 }
 
 /* all tiles at their natural aspect ratio — no cropping, no spans */
@@ -119,7 +140,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .location-controls .nav-arrow-button {
@@ -137,7 +158,7 @@
 }
 
 .location-controls .nav-arrow-button:hover {
-  background: rgba(201, 168, 76, 0.15);
+  background: rgba(226, 193, 95, 0.15);
   box-shadow: var(--glow-small);
 }
 
@@ -167,6 +188,6 @@
 /* --- responsive --- */
 @media (max-width: 1100px) {
   .location-wall {
-    height: clamp(260px, calc(100vh - 480px), 520px);
+    height: clamp(240px, calc(100vh - 440px), 480px);
   }
 }

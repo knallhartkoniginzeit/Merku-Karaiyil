@@ -15,6 +15,7 @@
 }
 
 .particle {
+
   position: absolute;
   border-radius: 50%;
   background: var(--gold-primary);
@@ -28,8 +29,8 @@
   color: var(--text-offwhite);
   line-height: 1.95;
   opacity: 1.;
-  border-left: 1px solid rgba(201, 168, 76, 0.25);
-  border-right: 1px solid rgba(201, 168, 76, 0.25);
+  border-left: 1px solid rgba(226, 193, 95, 0.25);
+  border-right: 1px solid rgba(226, 193, 95, 0.25);
   padding-left: 1.6rem;
 }
 
@@ -47,11 +48,11 @@
 
 @keyframes titleGlow {
   0% {
-    text-shadow: 0 0 20px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 0 20px rgba(226, 193, 95, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
   }
 
   100% {
-    text-shadow: 0 0 70px rgba(201, 168, 76, 0.55), 0 0 120px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 0 70px rgba(226, 193, 95, 0.55), 0 0 120px rgba(226, 193, 95, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
   }
 }
 

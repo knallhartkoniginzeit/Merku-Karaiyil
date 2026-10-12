@@ -160,7 +160,9 @@
       const frameH = wall.clientHeight;
       if (!photos.length || !frameH || !photos[0].dataset.w) return;
 
-      const gap = 12.8; // 0.8rem gaps, in px
+      const gap = 16; // 1rem gaps, in px — must match the CSS gap on
+                      // .location-wall / .location-col so the fit math and
+                      // the rendered spacing stay identical
       const nCols = wall.clientWidth < 700 ? 2 : Math.max(2, Math.min(3, Math.ceil(photos.length / 2)));
 
       // column width W for a set of photos: heights are W*(h/w) each, and

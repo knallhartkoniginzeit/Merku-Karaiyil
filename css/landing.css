@@ -34,7 +34,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 55% at 50% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 55% at 50% 40%, rgba(226, 193, 95, 0.08) 0%, transparent 70%);
   animation: ambientBreathe 9s ease-in-out infinite alternate;
 }
 
@@ -79,7 +79,7 @@
   color: var(--gold-bright);
   letter-spacing: 0.01em;
   line-height: 1.1;
-  text-shadow: 0 0 60px rgba(201, 168, 76, 0.35), 0 3px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 60px rgba(226, 193, 95, 0.35), 0 3px 6px rgba(0, 0, 0, 0.9);
   margin-bottom: 1.4rem;
   animation: titleGlow 4.5s ease-in-out infinite alternate;
 }
@@ -108,11 +108,11 @@
 
 @keyframes titleGlow {
   0% {
-    text-shadow: 0 0 20px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 0 20px rgba(226, 193, 95, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
   }
 
   100% {
-    text-shadow: 0 0 70px rgba(201, 168, 76, 0.55), 0 0 120px rgba(201, 168, 76, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 0 70px rgba(226, 193, 95, 0.55), 0 0 120px rgba(226, 193, 95, 0.2), 0 3px 6px rgba(0, 0, 0, 0.9);
   }
 }
 
@@ -145,5 +145,32 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Phone: the script title's swashes overflow its tight line box and
+   collide with the eyebrow above — give the lines room and breathing
+   space so nothing overlaps at mobile ratios. */
+@media (max-width: 640px) {
+  .landing-content {
+    padding: 2rem 1.4rem;
+  }
+
+  .landing-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    line-height: 1.8;
+    margin-bottom: 3.2rem;
+  }
+
+  .landing-title {
+    font-size: clamp(2.9rem, 13vw, 4.5rem);
+    line-height: 1.55;
+    margin-bottom: 2.2rem;
+  }
+
+  .landing-subtitle {
+    letter-spacing: 0.16em;
+    margin-bottom: 2.4rem;
   }
 }

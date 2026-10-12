@@ -7,7 +7,7 @@
      and plot-point labels, exactly as in the PDF.
    ========================================================================== */
 #section-moodboard {
-  padding: 5rem 4% 4rem;
+  padding: 2.6rem 4% 2.2rem;
   background: linear-gradient(180deg, rgba(10, 22, 40, 0.4) 0%, rgba(5, 12, 24, 0.5) 100%);
   position: relative;
   overflow: visible;
@@ -20,7 +20,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
   align-items: stretch;
   padding-bottom: 1rem;
 }
@@ -45,7 +45,7 @@
   color: var(--gold-primary);
   text-align: center;
   padding-top: 0.4rem;
-  border-right: 1px solid rgba(201, 168, 76, 0.3);
+  border-right: 1px solid rgba(226, 193, 95, 0.3);
   padding-right: 1.2rem;
   min-height: 220px;
 }
@@ -103,6 +103,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  min-height: 80px; /* prevents collapse when grid cells are very narrow */
   overflow: hidden;
   background: #1a1a1a;
   border-radius: 10px;
@@ -148,8 +149,20 @@
   flex: 0 0 100%;
   width: 100%;
   align-items: stretch;
-  min-height: calc(100vh - 9rem);
-  padding: 2.5rem 0 2rem;
+  min-height: min-content;
+  padding: 2rem 0 1.6rem;
+}
+
+/* Mobile: keep each ACT panel a single scrollable strip so no slide
+   overflow-crops against the fixed header or the fold. Content (steps,
+   story line, contextual photos) scrolls within the panel instead. */
+@media (max-width: 700px) {
+  .story-circle-slide {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0;
+    padding: 1.2rem 0 1rem;
+  }
 }
 
 /* act 2 & 3 have no side heading: give the stage the heading's width back,
@@ -173,7 +186,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .story-track-nav .nav-arrow-button {
@@ -396,24 +409,40 @@
 /* --------------------------------------------------------------------------
    RESPONSIVE
    -------------------------------------------------------------------------- */
-@media (max-width: 1100px) {
+
+/* ---- Medium-large: side heading shrinks, grid stays 4 cols but cards get min-width ---- */
+@media (max-width: 1200px) {
+  .mood-side-heading {
+    flex: 0 0 150px;
+    font-size: 0.88rem;
+  }
+  .polaroid-card.mood-card {
+    min-width: 0;
+  }
+}
+
+/* ---- Medium: stack heading above content, drop to 3-col grid ---- */
+@media (max-width: 960px) {
   .mood-slide {
     flex-direction: column;
   }
   .mood-side-heading {
     flex: 0 0 auto;
     border-right: none;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    border-bottom: 1px solid rgba(226, 193, 95, 0.3);
     padding: 0 0 0.6rem;
     min-height: 0;
     width: 100%;
   }
   .mood-photo-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+@media (max-width: 1100px) {
   .story-circle-slide {
     min-height: 0;
-    padding: 1.5rem 0;
+    padding: 1.2rem 0 1rem;
   }
   .act-stage {
     display: flex;
@@ -428,7 +457,35 @@
   .tick-tall { height: 9.5rem; }
 }
 
+/* ---- Small-medium: drop to 2-col grid ---- */
+@media (max-width: 700px) {
+  .mood-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Narrow phones: keep the ACT slide a snappable single strip, content
+   scrolls vertically inside it, and the photo masonry does not force the
+   strip taller than the viewport minus the fixed header. */
 @media (max-width: 640px) {
+  #section-moodboard {
+    padding: 1.6rem 4% 1.4rem;
+  }
+  .story-circle-slide {
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.8rem 0 0.6rem;
+  }
+  .act-stage {
+    gap: 1.2rem;
+  }
+  .story-line-row {
+    height: 9rem;
+  }
+  .tick-tall { height: 6.4rem; }
+  .plot-label.below { top: calc(50% + 4.2rem); }
+  .plot-label.above { bottom: calc(50% + 4.8rem); }
   .mood-photo-grid {
     grid-template-columns: repeat(2, 1fr);
   }
