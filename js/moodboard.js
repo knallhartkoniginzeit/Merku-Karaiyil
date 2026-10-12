@@ -311,6 +311,14 @@
   window.__storyTrack = null;
   stage.appendChild(storyTrack);
 
+  // Mobile: keep each ACT panel a single scrollable strip so the photos
+  // (and the story line / plot labels) are always actually visible instead
+  // of overflowing past the bottom edge of the 390px viewport.
+  if (window.visualViewport && visualViewport.width <= 640) {
+    storyTrack.style.scrollSnapType = 'x mandatory';
+    storyTrack.style.overflowY = 'visible';
+  }
+
   // arrows + dots under the ACT track (prev / dots / next)
   const trackTargets = [...storyTrack.querySelectorAll(':scope > .story-circle-slide')];
   const nav = document.createElement('div');
@@ -326,7 +334,7 @@
   nextBtn.setAttribute('aria-label', 'Next act');
   nextBtn.innerHTML = '&#8594;';
   nav.append(prevBtn, dotsWrap, nextBtn);
-  stage.appendChild(nav);
+  stage.insertBefore(nav, storyTrack); // buttons at the TOP, above the ACT track
 
   let actIndex = 0;
   let animating = false;

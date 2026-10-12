@@ -18,21 +18,21 @@
   /* --- exact text and photos from PDF pages 8-9 --- */
   const BOYS = [
     {
-      name: 'Ram aka Perry (13)',
+      name: 'Perry (13)',
       square: 'images/characters/perry-square.png',
       portrait: 'images/characters/perry-portrait.png',
       actor: 'Rithvik',
       desc: 'Perry is a curious, energetic, and above-average boy who values friendship above everything else. He has done something he keeps to himself, maintaining a quiet, almost mysterious nature much like Perry the Platypus from Phineas and Ferb. He is deeply afraid of his mother and tends to overthink things. More than anything, Perry wants to make memories with his friends and hold on to the moments that matter.'
     },
     {
-      name: 'Hari aka Keeri (13)',
+      name: 'Keeri (13)',
       square: 'images/characters/keeri-square.png',
       portrait: 'images/characters/keeri-portrait.png',
       actor: 'Athrey Baiju',
       desc: 'Keeri is an average student, a fun-loving and carefree boy who rarely takes things too seriously. He is always cracking jokes and trying to make everyone around him laugh. But beneath that cheerful nature is a sensitive side shaped by his parents\u2019 constant fights at home, which affects him deeply, especially at night. Despite everything, Keeri always stands by his friends and never hesitates to be there for them.'
     },
     {
-      name: 'David aka Dhadi (13)',
+      name: 'Dhadi (13)',
       square: 'images/characters/dhadi-square.png',
       portrait: 'images/characters/dhadi-portrait.png',
       actor: 'Kamalesh Jagan',

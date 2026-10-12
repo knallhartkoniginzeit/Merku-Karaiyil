@@ -7,17 +7,17 @@
   --bg-prussian-mid: #0F1E35;
   --bg-prussian-light: #152640;
   
-  --gold-primary: #C9A84C;
-  --gold-bright: #F0D080;
-  --gold-dark: #8B6914;
-  --gold-muted: #5C4420;
+  --gold-primary: #E2C15F;
+  --gold-bright: #FFE79A;
+  --gold-dark: #B78D24;
+  --gold-muted: #866528;
   
   --text-white: #F5F0E8;
   --text-offwhite: #D4CDB8;
   
-  --glow-small: 0 0 12px rgba(201, 168, 76, 0.35);
-  --glow-medium: 0 0 24px rgba(201, 168, 76, 0.4), 0 0 48px rgba(201, 168, 76, 0.15);
-  --glow-large: 0 0 40px rgba(201, 168, 76, 0.6), 0 0 80px rgba(201, 168, 76, 0.25);
+  --glow-small: 0 0 12px rgba(226, 193, 95, 0.4);
+  --glow-medium: 0 0 24px rgba(226, 193, 95, 0.45), 0 0 48px rgba(226, 193, 95, 0.18);
+  --glow-large: 0 0 40px rgba(226, 193, 95, 0.65), 0 0 80px rgba(226, 193, 95, 0.28);
 }
 
 *,
@@ -51,15 +51,7 @@ body {
   font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
 }
 .section-number {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.45em;
-  color: var(--gold-dark);
-  opacity: 0.6;
-  position: absolute;
-  top: 1.5rem;
-  left: 2rem;
-  z-index: 5;
+  /* removed: top-left section numbers are no longer shown */
 }
 
 .section-heading {
@@ -104,7 +96,7 @@ body {
 .oneline-border-box {
   max-width: 900px;
   margin: 0 auto;
-  border: 1px solid rgba(201, 168, 76, 0.45);
+  border: 1px solid rgba(226, 193, 95, 0.45);
   background: rgba(242, 237, 216, 0.06);
   padding: 1.75rem 2rem;
   text-align: center;
@@ -160,7 +152,7 @@ body {
   z-index: 9999;
   background: rgba(5, 12, 24, 0.72);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.22);
+  border-bottom: 1px solid rgba(226, 193, 95, 0.22);
   transition: transform 0.3s ease;
 }
 
@@ -236,13 +228,32 @@ body {
 .header-btn:focus-visible {
   outline: none;
   color: var(--gold-bright);
-  background: rgba(201, 168, 76, 0.07);
+  background: rgba(226, 193, 95, 0.07);
 }
 
 .header-btn.active {
   color: var(--gold-bright);
   border-color: var(--gold-primary);
-  background: rgba(201, 168, 76, 0.12);
+  background: rgba(226, 193, 95, 0.12);
+}
+
+/* Dark radial vignette (the landing title's dark backing) carried into
+   every other page as a BACKGROUND layer behind all content. */
+#section-logline::before,
+#section-synopsis::before,
+#section-moodboard::before,
+#section-colorpalette::before,
+#section-characters::before,
+#section-locations::before,
+#section-soundtrack::before,
+#section-director::before,
+#section-contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 60% at 50% 40%, rgba(10, 22, 40, 0.35) 0%, rgba(5, 12, 24, 0.65) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Container offset so fixed header doesn't cover section headings */
@@ -271,7 +282,7 @@ body {
 
 .credit-block {
   background: rgba(15, 25, 45, 0.7);
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(226, 193, 95, 0.2);
   border-radius: 4px;
   padding: 1.8rem 1.8rem 2rem;
   backdrop-filter: blur(4px);
@@ -285,7 +296,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 1.2rem;
   padding-bottom: 0.6rem;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  border-bottom: 1px solid rgba(226, 193, 95, 0.2);
 }
 
 .credit-name {
@@ -317,7 +328,7 @@ body {
   align-items: baseline;
   gap: 1rem;
   padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  border-bottom: 1px solid rgba(226, 193, 95, 0.08);
 }
 
 .credit-cast-name {
@@ -379,7 +390,7 @@ body {
   align-items: center;
   gap: 1rem;
   background: rgba(15, 25, 45, 0.7);
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(226, 193, 95, 0.2);
   border-radius: 6px;
   padding: 1.2rem 2rem;
   backdrop-filter: blur(4px);
@@ -415,7 +426,7 @@ body {
   font-size: 1.15rem;
   color: var(--text-white);
   text-decoration: none;
-  border-bottom: 1px dotted rgba(201, 168, 76, 0.3);
+  border-bottom: 1px dotted rgba(226, 193, 95, 0.3);
   transition: border-color 0.3s, color 0.3s;
 }
 
@@ -466,12 +477,12 @@ body {
   backdrop-filter: blur(8px);
   padding: 2rem;
   text-align: center;
-  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  border-top: 1px solid rgba(226, 193, 95, 0.15);
 }
 
 .site-footer p {
   font-family: 'Cinzel', serif;
   font-size: 0.55rem;
   letter-spacing: 0.4em;
-  color: rgba(201, 168, 76, 0.5);
+  color: rgba(226, 193, 95, 0.5);
 }

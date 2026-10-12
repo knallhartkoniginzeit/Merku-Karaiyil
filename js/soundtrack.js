@@ -41,6 +41,13 @@
     card.className = 'song-card';
     card.setAttribute('role', 'listitem');
 
+    // "SONG 1" / "SONG 2" … label above each card, as the PDF soundtrack
+    // pages do; the last two (bonus tracks) are labelled BONUS 1 / BONUS 2.
+    const label = document.createElement('div');
+    label.className = 'song-label';
+    label.textContent = i < 7 ? 'SONG ' + (i + 1) : 'BONUS ' + (i - 6);
+    card.appendChild(label);
+
     const coverWrap = document.createElement('div');
     coverWrap.className = 'song-cover';
     const img = document.createElement('img');

@@ -33,7 +33,7 @@
   flex-direction: column;
   /* extra horizontal padding keeps all text well inside the visual box
      (the ::after box edge sits at 6%, so text starts ~2.2rem inside it) */
-  padding: 1.5rem calc(6% + 2.2rem) 1.3rem;
+  padding: 1.5rem calc(6% + 2.2rem) 0.7rem;
   position: relative;
   flex-shrink: 0;
   box-sizing: border-box;
@@ -45,7 +45,7 @@
   position: absolute;
   inset: 0.8rem 6% 0.8rem;
   background: linear-gradient(135deg, rgba(15, 30, 53, 0.8), rgba(10, 22, 40, 0.9));
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  border: 1px solid rgba(226, 193, 95, 0.2);
   backdrop-filter: blur(6px);
   z-index: 0;
 }
@@ -126,15 +126,15 @@
 
 .character-desc {
   font-family: 'Akzidenz-Grotesk', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1.02rem;
-  line-height: 1.72;
+  font-size: 1.12rem;
+  line-height: 1.7;
   color: var(--text-offwhite);
   opacity: 0.92;
-  flex: 1;
+  margin-bottom: 0;
 }
 
 .character-actor {
-  margin-top: 1.1rem;
+  margin-top: 0.75rem;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -194,7 +194,7 @@
   margin-top: 1.4rem;
   padding: 1.2rem 1.2rem 1.3rem;
   background: rgba(5, 12, 24, 0.45);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(226, 193, 95, 0.25);
   border-radius: 4px;
   display: flex;
   gap: 1rem;
@@ -265,7 +265,7 @@
   align-items: center;
   gap: 1rem;
   padding: 0 6%;
-  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .nav-arrow-button {
@@ -283,7 +283,7 @@
 }
 
 .nav-arrow-button:hover {
-  background: rgba(201, 168, 76, 0.15);
+  background: rgba(226, 193, 95, 0.15);
   box-shadow: var(--glow-small);
 }
 
