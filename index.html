@@ -38,9 +38,9 @@
       <nav class="header-nav" aria-label="Site navigation">
         <button class="header-btn" data-target="section-logline"        aria-label="Go to Log Line">Log Line</button>
         <button class="header-btn" data-target="section-synopsis"       aria-label="Go to Synopsis">Synopsis</button>
+        <button class="header-btn" data-target="section-characters"     aria-label="Go to Characters">Characters</button>
         <button class="header-btn" data-target="section-moodboard"      aria-label="Go to Mood Board">Mood Board</button>
         <button class="header-btn" data-target="section-colorpalette"   aria-label="Go to Color Palette">Colors</button>
-        <button class="header-btn" data-target="section-characters"     aria-label="Go to Characters">Characters</button>
         <button class="header-btn" data-target="section-locations"      aria-label="Go to Locations">Locations</button>
         <button class="header-btn" data-target="section-soundtrack"     aria-label="Go to Soundtrack">Soundtrack</button>
         <button class="header-btn" data-target="section-director"       aria-label="Go to Director">Director</button>
@@ -71,7 +71,7 @@
       <div class="section-rule"></div>
 
         <div class="logline-column">
-          Set in 2015 Trichy, Ram aka Perry (13), Hari aka Keeri (13), and David aka Dhadi (13) are three inseparable boys escaping broken homes and constant emotional pressure, united by one small dream to see the sea once in their lives. When they run away toward Varkala, fate brings them together with Chandru, a quiet, emotionally distant man who unexpectedly becomes their guide and protector. As the journey unfolds, Chandru witnesses their innocence, friendship, and unfiltered joy, while silently battling a deep guilt he cannot share. After helping the boys fulfill their dream, reunite with their families, and heal their wounds, Chandru walks away alone finally at peace. Only in the final moments do we realize the truth. Chandru is actually an older Perry, who has been living with unbearable guilt from his college days, where Keeri and Dhadi died in an accident. This miraculous journey with their younger selves allows him to say the apology he never could, receive forgiveness without revealing the truth, and finally let go turning a childhood road trip into a deeply emotional story about friendship, regret, and healing across time. 
+          Three troubled boys run away to see the sea and a broken man becomes their unexpected companion on a journey that changes all their lives.
         </div>
     </div>
     <div class="gold-divider"></div>
@@ -180,46 +180,7 @@ He is Ram. His full name is Ramachandran.
   </section>
 
   <!-- ==========================================================================
-       SECTION 4: MOOD BOARD
-       ========================================================================== -->
-  <section id="section-moodboard" aria-label="Mood Board">
-    <div class="fade-in-observer">
-      <h2 class="section-heading">[MOOD BOARD]</h2>
-      <div class="section-rule"></div>
-      <div class="polaroid-stage" id="polaroidStage" role="region" aria-label="Aged polaroid collection"></div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 5: COLOR PALETTE
-       ========================================================================== -->
-  <section id="section-colorpalette" aria-label="Color Palette">
-    <div class="fade-in-observer">
-      <h2 class="section-heading">[COLOR PALETTE]</h2>
-      <div class="section-rule"></div>
-
-      <!-- Top Row: Cinematic Scene Images -->
-      <div class="scene-image-row" id="sceneImageRow" role="list"></div>
-
-      <!-- Bottom Area: SVG Color Wheel & Code List -->
-      <div class="color-wheel-wrapper">
-        <div class="wheel-svg-container">
-          <svg id="colorWheelSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Interactive Color Wheel"></svg>
-          <div class="wheel-center-hub">
-            <div class="wheel-hub-dot"></div>
-          </div>
-        </div>
-
-        <div class="color-code-list">
-          <div id="colorCodeEntries"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 6: CHARACTERS
+       SECTION 4: CHARACTERS
        ========================================================================== -->
   <section id="section-characters" aria-label="Characters">
     <div class="fade-in-observer">
@@ -237,6 +198,32 @@ He is Ram. His full name is Ramachandran.
       <div class="character-track" id="characterTrack" role="list"></div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       SECTION 5: MOOD BOARD
+       ========================================================================== -->
+  <section id="section-moodboard" aria-label="Mood Board">
+    <div class="fade-in-observer">
+      <h2 class="section-heading">[MOOD BOARD]</h2>
+      <div class="section-rule"></div>
+      <div class="polaroid-stage" id="polaroidStage" role="region" aria-label="Aged polaroid collection"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: COLOR PALETTE
+       ========================================================================== -->
+  <section id="section-colorpalette" aria-label="Color Palette">
+    <div class="fade-in-observer">
+      <h2 class="section-heading">[COLOR PALETTE]</h2>
+      <div class="section-rule"></div>
+
+      <!-- Four palette blocks (PDF pages 26-29): each palette's text and
+           swatch strip with its own cinematic stills directly below -->
+      <div class="palette-list" id="colorPalettes"></div>
+    </div>
+  </section>
+
 
   <!-- ==========================================================================
        SECTION 7: LOCATIONS

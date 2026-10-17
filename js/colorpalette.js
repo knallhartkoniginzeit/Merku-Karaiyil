@@ -1,10 +1,10 @@
 /* --------------------------------------------------------------------------
-   SECTION 5: COLOR PALETTE — exact reproduction of PDF pages 26-29
+   SECTION 6: COLOR PALETTE — exact reproduction of PDF pages 26-29
    Four palettes, verbatim from the deck (description + swatch strips sampled
-   from the PDF itself). Every swatch of all four palettes feeds the colour
-   wheel: one wheel segment per swatch, grouped by palette.
-   Hover a segment / swatch to highlight the matching stills (as in the PDF,
-   each palette page pairs its colours with four film stills).
+   from the PDF itself). Each palette block is: title + description + swatch
+   strip, with that palette's four cinematic stills directly below it (as in
+   the PDF, where each palette page pairs its colours with four film stills).
+   Hover a swatch / the card to highlight the matching stills.
    -------------------------------------------------------------------------- */
 (function initColorPalette() {
   /* --- the four PDF palettes: exact text + extracted swatch colours --- */
@@ -43,73 +43,17 @@
     }
   ];
 
-  /* --- scene still cells: the real film stills from the PDF palette pages,
-         each tagged with its palette; enlarges when its colour is hovered --- */
-  const imgRow = document.getElementById('sceneImageRow');
-  if (!imgRow) return;
+  const container = document.getElementById('colorPalettes');
+  if (!container) return;
 
   PALETTES.forEach((pal) => {
-    pal.stills.forEach((src, k) => {
-      const cell = document.createElement('div');
-      cell.className = 'scene-image-cell';
-      cell.dataset.palette = pal.id;
-      cell.setAttribute('role', 'listitem');
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = '';
-      img.loading = 'lazy';
-      cell.appendChild(img);
-      imgRow.appendChild(cell);
-    });
-  });
+    /* --- one palette block: card (text + swatches) + its stills below --- */
+    const group = document.createElement('div');
+    group.className = 'palette-group';
+    group.dataset.palette = pal.id;
 
-  /* --- THE COLOR WHEEL: one ring per palette, one segment per swatch.
-         Built exactly from the PDF palette swatches (no invented colours). --- */
-  const svg = document.getElementById('colorWheelSvg');
-  const R = 90, cx = 100, cy = 100;
-  const toRad = deg => deg * Math.PI / 180;
-  const getX = (deg, radius) => cx + radius * Math.cos(toRad(deg));
-  const getY = (deg, radius) => cy + radius * Math.sin(toRad(deg));
-
-  const rings = PALETTES.map((pal, idx) => {
-    const rOuter = 90 - idx * 13;
-    const rInner = rOuter - 13;
-    return { pal, rOuter, rInner };
-  });
-
-  rings.forEach(({ pal, rOuter, rInner }) => {
-    const n = pal.swatches.length;
-    const step = 360 / n;
-    pal.swatches.forEach((hex, i) => {
-      const startDeg = i * step - 90;
-      const endDeg = startDeg + step;
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d',
-        `M ${getX(startDeg, rInner)} ${getY(startDeg, rInner)} ` +
-        `L ${getX(startDeg, rOuter)} ${getY(startDeg, rOuter)} ` +
-        `A ${rOuter} ${rOuter} 0 0 1 ${getX(endDeg, rOuter)} ${getY(endDeg, rOuter)} ` +
-        `L ${getX(endDeg, rInner)} ${getY(endDeg, rInner)} ` +
-        `A ${rInner} ${rInner} 0 0 0 ${getX(startDeg, rInner)} ${getY(startDeg, rInner)} Z`);
-      path.setAttribute('fill', hex);
-      path.setAttribute('stroke', 'rgba(5,12,24,0.8)');
-      path.setAttribute('stroke-width', '0.5');
-      path.dataset.palette = pal.id;
-      path.dataset.hex = hex;
-      path.style.cursor = 'pointer';
-      path.style.transition = 'filter 0.3s';
-      path.addEventListener('mouseenter', () => highlight(pal, hex));
-      path.addEventListener('mouseleave', clear);
-      svg.appendChild(path);
-    });
-  });
-
-  /* --- palette cards: verbatim PDF text + full swatch strips --- */
-  const listContainer = document.getElementById('colorCodeEntries');
-  listContainer.innerHTML = '';
-  PALETTES.forEach(pal => {
     const card = document.createElement('div');
     card.className = 'palette-card';
-    card.dataset.palette = pal.id;
 
     const h = document.createElement('h5');
     h.className = 'palette-card-title';
@@ -136,37 +80,40 @@
     });
     card.appendChild(strip);
 
-    card.addEventListener('mouseenter', () => highlightPalette(pal));
+    card.addEventListener('mouseenter', () => highlight(pal));
     card.addEventListener('mouseleave', clear);
-    listContainer.appendChild(card);
+    group.appendChild(card);
+
+    /* --- this palette's four cinematic stills, directly below its card --- */
+    const row = document.createElement('div');
+    row.className = 'palette-stills';
+    pal.stills.forEach((src) => {
+      const cell = document.createElement('div');
+      cell.className = 'scene-image-cell';
+      cell.dataset.palette = pal.id;
+      cell.setAttribute('role', 'listitem');
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.loading = 'lazy';
+      cell.appendChild(img);
+      row.appendChild(cell);
+    });
+    group.appendChild(row);
+
+    container.appendChild(group);
   });
 
-  /* --- highlight logic --- */
-  function highlight(pal, hex) {
-    // stills of this palette stay lit and enlarge, others dim
+  /* --- highlight logic: hovering a card/swatch lights its stills and
+         dims the other palettes' stills --- */
+  function highlight(pal) {
     document.querySelectorAll('.scene-image-cell').forEach(cell => {
       const on = cell.dataset.palette === pal.id;
       cell.classList.toggle('highlighted', on);
       cell.classList.toggle('dimmed', !on);
     });
-    // matching wheel segments stay bright, everything else dims
-    document.querySelectorAll('#colorWheelSvg path').forEach(p => {
-      p.style.filter = (p.dataset.hex === hex) ? 'brightness(1.7)' : 'brightness(0.35)';
-    });
-    // matching swatches pop
     document.querySelectorAll('.palette-swatch').forEach(sw => {
-      sw.classList.toggle('active', sw.dataset.hex === hex && sw.dataset.palette === pal.id);
-    });
-  }
-
-  function highlightPalette(pal) {
-    document.querySelectorAll('.scene-image-cell').forEach(cell => {
-      const on = cell.dataset.palette === pal.id;
-      cell.classList.toggle('highlighted', on);
-      cell.classList.toggle('dimmed', !on);
-    });
-    document.querySelectorAll('#colorWheelSvg path').forEach(p => {
-      p.style.filter = (p.dataset.palette === pal.id) ? 'brightness(1.25)' : 'brightness(0.35)';
+      sw.classList.toggle('active', sw.dataset.palette === pal.id);
     });
     document.querySelectorAll('.palette-card').forEach(c => {
       c.classList.toggle('active', c.dataset.palette === pal.id);
@@ -175,7 +122,6 @@
 
   function clear() {
     document.querySelectorAll('.scene-image-cell').forEach(c => c.classList.remove('highlighted', 'dimmed'));
-    document.querySelectorAll('#colorWheelSvg path').forEach(p => { p.style.filter = ''; });
     document.querySelectorAll('.palette-swatch').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.palette-card').forEach(c => c.classList.remove('active'));
   }

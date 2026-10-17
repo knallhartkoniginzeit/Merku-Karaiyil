@@ -1,9 +1,8 @@
 /* ==========================================================================
-   SECTION 5: COLOR PALETTE — PDF pages 26-29
+   SECTION 6: COLOR PALETTE — PDF pages 26-29
    Four palettes (Boys / Chandru first half / Second half / Climax), each
-   with verbatim PDF text and the exact swatch strip from the deck. The
-   wheel to the left is built purely from those swatches: one ring per
-   palette, one segment per swatch.
+   with verbatim PDF text, the exact swatch strip from the deck, and that
+   palette's four cinematic stills directly below the card.
    ========================================================================== */
 #section-colorpalette {
   padding: 4rem 4% 3rem;
@@ -12,127 +11,29 @@
   position: relative;
 }
 
-.scene-image-row {
-  display: grid;
-  /* four big stills per row (matches the four palette pages) — cells are
-     ~330px wide instead of ~85px, so every photo reads at a glance */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.9rem;
-  max-width: 1360px;
-  margin: 0 auto 2rem;
-  align-items: start;
-  /* no fixed height — each cell sizes to its own image aspect ratio
-     so every still is shown fully, in any ratio, with no cropping */
-}
-
-.scene-image-cell {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(226, 193, 95, 0.18);
-  cursor: pointer;
-  background: rgba(5, 12, 24, 0.25);
-  transform-origin: center;
-  transition: transform 0.45s ease, box-shadow 0.45s ease,
-              border-color 0.45s ease, opacity 0.4s ease;
-}
-
-.scene-image-cell img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.45s ease;
-}
-
-/* direct hover on a still: the whole cell lifts and enlarges — the grid
-   gap around it gives it room to grow without covering its neighbours */
-.scene-image-cell:hover {
-  transform: scale(1.05);
-  z-index: 3;
-  border-color: var(--gold-primary);
-  box-shadow: 0 0 0 2px var(--gold-primary), var(--glow-medium);
-}
-
-.scene-image-cell.dimmed:hover {
-  transform: none;
-  z-index: auto;
-  border-color: rgba(226, 193, 95, 0.18);
-  box-shadow: none;
-}
-
-/* stills of the hovered colour enlarge, the rest dim.
-   Cells keep their own image-driven height in every ratio, so nothing crops. */
-.scene-image-cell.highlighted {
-  border-color: var(--gold-primary);
-  box-shadow: 0 0 0 2px var(--gold-primary), var(--glow-large);
-}
-
-.scene-image-cell.highlighted img {
-  transform: scale(1.08);
-}
-
-.scene-image-cell.dimmed {
-  opacity: 0.18;
-}
-
-.color-wheel-wrapper {
+/* --- stacked palette blocks, centered --- */
+.palette-list {
   max-width: 1360px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
 }
 
-.wheel-svg-container {
-  flex-shrink: 0;
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin-left: -2rem; /* wheel sits a little to the left */
+.palette-group {
+  margin-bottom: 2.6rem;
 }
 
-#colorWheelSvg {
-  width: 400px;
-  height: 400px;
-  cursor: pointer;
+.palette-group:last-child {
+  margin-bottom: 0;
 }
 
-.wheel-center-hub {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  background: rgba(10, 22, 40, 0.92);
-  border-radius: 50%;
-  border: 2px solid var(--gold-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wheel-hub-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--gold-bright), var(--gold-primary));
-  box-shadow: var(--glow-small);
-}
-
-/* --- palette cards: wider text column so the whole section fits one frame --- */
-.color-code-list {
-  flex: 1;
-  min-width: 0;
-  max-width: 880px;
-}
-
+/* --- palette cards: title + description + swatch strip --- */
 .palette-card {
   border: 1px solid transparent;
   border-left: 2px solid rgba(226, 193, 95, 0.25);
   padding: 0.7rem 1rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.9rem;
   border-radius: 2px;
   transition: border-color 0.3s, background 0.3s;
+  max-width: 980px;
 }
 
 .palette-card:hover,
@@ -187,24 +88,69 @@
   z-index: 2;
 }
 
-/* --- responsive: stack on narrow devices, wheel fits any screen --- */
+/* --- this palette's cinematic stills, directly below its card --- */
+.palette-stills {
+  display: grid;
+  /* four big stills per row (matches the four stills per palette page) —
+     each cell sizes to its own image aspect ratio so every still is shown
+     fully, in any ratio, with no cropping */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.scene-image-cell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(226, 193, 95, 0.18);
+  cursor: pointer;
+  background: rgba(5, 12, 24, 0.25);
+  transform-origin: center;
+  transition: transform 0.45s ease, box-shadow 0.45s ease,
+              border-color 0.45s ease, opacity 0.4s ease;
+}
+
+.scene-image-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+/* direct hover on a still: the whole cell lifts and enlarges — the grid
+   gap around it gives it room to grow without covering its neighbours */
+.scene-image-cell:hover {
+  transform: scale(1.05);
+  z-index: 3;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 2px var(--gold-primary), var(--glow-medium);
+}
+
+.scene-image-cell.dimmed:hover {
+  transform: none;
+  z-index: auto;
+  border-color: rgba(226, 193, 95, 0.18);
+  box-shadow: none;
+}
+
+/* stills of the hovered palette enlarge, the rest dim */
+.scene-image-cell.highlighted {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 2px var(--gold-primary), var(--glow-large);
+}
+
+.scene-image-cell.highlighted img {
+  transform: scale(1.08);
+}
+
+.scene-image-cell.dimmed {
+  opacity: 0.18;
+}
+
+/* --- responsive: stack on narrow devices --- */
 @media (max-width: 1100px) {
-  .scene-image-row {
+  .palette-stills {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .color-wheel-wrapper {
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-  .wheel-svg-container,
-  #colorWheelSvg {
-    width: 280px;
-    height: 280px;
-    margin-left: 0;
-  }
-  .wheel-center-hub {
-    width: 46px;
-    height: 46px;
   }
   .palette-card-desc {
     columns: 1;

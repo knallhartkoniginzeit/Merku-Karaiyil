@@ -26,7 +26,7 @@
   if (!header || !buttons) return;
 
   const sectionIds = ['section-landing', 'section-logline', 'section-synopsis',
-    'section-moodboard', 'section-colorpalette', 'section-characters',
+    'section-characters', 'section-moodboard', 'section-colorpalette',
     'section-locations', 'section-soundtrack', 'section-director',
     'section-contact'];
 

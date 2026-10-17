@@ -17,7 +17,7 @@
     {
       name: 'Hari aka Keeri & David aka Dhadi house setup',
       desc: 'A modest middle-class family house in Trichy, nestled within a small colony of eight surrounding houses.',
-      imgs: ['p31_3_x74_y249_1299x651.png', 'p31_4_x529_y226_736x552.png', 'p31_6_x124_y522_735x483.png', 'p31_8_x934_y525_720x540.png']
+      imgs: ['p31_3_x74_y249_1299x651.png', 'p31_4_x529_y226_736x552.png', 'p31_5_x928_y0_736x1109.png', 'p31_6_x124_y522_735x483.png', 'p31_7_x506_y528_736x414.png', 'p31_8_x934_y525_720x540.png']
     },
     {
       name: 'Boyz School in Trichy',
@@ -39,12 +39,12 @@
     {
       name: 'Lake near Varadhan house',
       desc: 'A beautiful house with a spacious lawn in Vellayani, near Trivandrum. That night, the lawn is set up for a simple, aesthetic reception.',
-      imgs: ['p35_4_x399_y289_334x355.png', 'p35_5_x728_y279_430x505.png']
+      imgs: ['p35_3_x81_y263_736x981.png', 'p35_4_x399_y289_334x355.png', 'p35_5_x728_y279_430x505.png', 'p35_6_x1052_y254_736x981.png']
     },
     {
       name: 'Lodge in Trivandrum',
       desc: 'After leaving Varadhan\u2019s house, the boys stay at a budget-friendly, slightly old-fashioned lodge in Trivandrum.',
-      imgs: ['p36_3_x536_y283_658x535.png', 'p36_4_x114_y316_841x547.png', 'p36_5_x898_y320_841x397.png']
+      imgs: ['p36_3_x81_y232_960x1280.png', 'p36_4_x114_y316_841x547.png', 'p36_5_x898_y320_841x397.png', 'p36_7_x986_y194_960x1280.png', 'p36_3_x536_y283_658x535.png']
     },
     {
       name: 'Old theatre setup in Kerala',
@@ -55,8 +55,8 @@
     {
       name: 'Varkala, Kerala',
       desc: 'Varkala South Cliff and Beach with a beautiful sunset view.',
-      imgs: ['p38_3_x124_y246_822x532.png', 'p38_4_x462_y249_1017x546.png', 'p38_5_x933_y521_736x490.png',
-             'p38_7_x529_y521_1120x747.png', 'p38_8_x934_y113_642x678.png']
+      imgs: ['p38_3_x124_y246_822x532.png', 'p38_4_x462_y249_1017x546.png', 'p38_8_x934_y113_642x678.png',
+             'p38_6_x124_y322_736x1308.png', 'p38_7_x529_y521_1120x747.png', 'p38_5_x933_y521_736x490.png']
     }
   ];
 

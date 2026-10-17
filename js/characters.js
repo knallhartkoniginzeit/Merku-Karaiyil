@@ -43,8 +43,9 @@
   const CHANDRU = {
     name: 'Chandru (26)',
     head: 'images/characters/chandru.png',
-    portrait: 'images/characters/ashok-selvan.png',
-    actor: 'Ashok Selvan',
+    // hover/transition photo is Basil Joseph (per request); no actor credit line
+    portrait: 'images/characters/basil-joseph.png',
+    actor: '',
     desc: 'Three years ago, one incident changed the way Chandru sees life. Consumed by guilt and regret, he has never been able to forgive himself for what happened. He believes he no longer deserves happiness or anything good in life. He wants to apologize to the people affected by his actions, but they are no longer in his life. While life moves forward around him, Chandru remains trapped in the past, unable to let himself live in the present.'
   };
 
@@ -94,6 +95,13 @@
     }
   ];
 
+  // deck order (PDF pages 10-13): Varipuli & Kavya, Perry's parents,
+  // Keeri's parents, then Amul Doss & Varadhan
+  const SUPPORT_ORDER = ['Varipuli (25)', 'Kavya (26)', 'Ragupathi (40)',
+    'Shruthi (35)', 'Dinesh (38)', 'Banumathi (32)',
+    'Amul Doss (45)', 'Varadhan (50)'];
+  SUPPORT.sort((a, b) => SUPPORT_ORDER.indexOf(a.name) - SUPPORT_ORDER.indexOf(b.name));
+
   const CAST = [
     ['Basil Joseph', 'images/characters/basil-joseph.png'],
     ['Ashok Selvan', 'images/characters/ashok-selvan.png'],
@@ -137,10 +145,13 @@
     const p = document.createElement('p');
     p.className = 'character-desc';
     p.textContent = desc;
-    const a = document.createElement('div');
-    a.className = 'character-actor';
-    a.innerHTML = '<span>as</span> ' + actor;
-    frag.append(h, p, a);
+    frag.append(h, p);
+    if (actor) {
+      const a = document.createElement('div');
+      a.className = 'character-actor';
+      a.innerHTML = '<span>as</span> ' + actor;
+      frag.append(a);
+    }
     return frag;
   }
 

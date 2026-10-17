@@ -213,8 +213,8 @@
     const A3S7 = {
       overlap: true,
       items: [
-        ['Film mood/2.png', 2.36, 0.5],
-        ['Narrative ref/14.jpeg', 2.42, 0.5]
+        ['Narrative ref/act3-step7-left.png', 2.36, 0.5],
+        ['Narrative ref/act3-step7-right.png', 2.42, 0.5]
       ]
     };
     const A3S8 = {
@@ -222,7 +222,7 @@
       items: [
         ['Narrative ref/15.jpeg', 1.44, 1],
         ['Narrative ref/16.jpeg', 1.5, 1],
-        ['Tone and Light ref/11.jpeg', 1.86, 1]
+        ['Narrative ref/act3-step8-frames.png', 1.86, 1]
       ]
     };
 
