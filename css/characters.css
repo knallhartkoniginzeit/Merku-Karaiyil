@@ -109,9 +109,10 @@
   box-shadow: var(--glow-small);
 }
 
-/* --- Chandru: larger photo, swaps to portrait on hover --- */
+/* --- Chandru: larger portrait, full image upright (no crop/rotation) --- */
 .chandru-photo {
-  width: 250px;
+  width: 230px;
+  aspect-ratio: 3 / 4;
 }
 
 .character-heading {
@@ -184,6 +185,17 @@
 .chandru-feature .character-heading,
 .chandru-feature .character-actor {
   text-align: left;
+}
+
+/* --- ensure the Chandru hover image is fully upright and not clipped --- */
+.chandru-photo .photo-hover {
+  opacity: 0;
+  transform: scale(1) rotate(0deg);
+}
+
+.chandru-photo:hover .photo-hover {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 /* --- CAST PANEL: the five confirmed actors BELOW Chandru's bio,
