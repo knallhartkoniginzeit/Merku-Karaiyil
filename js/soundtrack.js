@@ -10,7 +10,7 @@
   const AUDIO_URLS = {
     'Yealae Yealae Dosthu Da': 'audio/song1.mpeg',
     'Cherathukal (From "Kumbalangi Nights")': 'audio/song2.mpeg',
-    'Sanu Ek Pal Chain (From "Raid")': 'audio/song3.mpeg',
+    'Khairiyat': 'audio/song3.mpeg',
     'Ilahi': 'audio/song4.mpeg',
     'K For Kalyanam (From "Guruvayoorambala Nadayil")': 'audio/song5.mpeg',
     'Thaniye': 'audio/song6.mpeg',
@@ -22,7 +22,7 @@
   const TRACKS = [
     ['Yealae Yealae Dosthu Da', 'Harris Jayaraj, Krishh, Naresh Iyer, Krishna Iyer', 'images/soundtrack/song1.png'],
     ['Cherathukal (From "Kumbalangi Nights")', 'Sushin Shyam, Sithara Krishnakumar, Anwar Ali', 'images/soundtrack/song2.png'],
-    ['Sanu Ek Pal Chain (From "Raid")', 'Rahat Fateh Ali Khan, Tanishk Bagchi', 'images/soundtrack/song3.png'],
+    ['Khairiyat', 'Pritam, Arijit Singh', 'images/soundtrack/song3.png'],
     ['Ilahi', 'Pritam, Arijit Singh, Amitabh Bhattacharya', 'images/soundtrack/song4.png'],
     ['K For Kalyanam (From "Guruvayoorambala Nadayil")', 'Ankit Menon, Milan, Sharath, Himna Hilari, Aruna Mary George, Indu Deepu', 'images/soundtrack/song5.png'],
     ['Thaniye', 'Vishnu Vijay, Sooraj Santhosh', 'images/soundtrack/song6.png'],
